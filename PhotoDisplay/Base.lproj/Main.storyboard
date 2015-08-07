@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Main View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="MainViewController" customModule="PhotoDisplay" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="64" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="JGs-yH-Lch">
+                                <rect key="frame" x="0.0" y="44" width="406" height="556"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="u6x-HH-Yed">
+                                    <size key="itemSize" width="140" height="140"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="photoCell" id="qek-ti-P0p" customClass="PhotoCollectionViewCell" customModule="PhotoDisplay" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="140" height="140"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l2Q-LX-iZt">
+                                                    <rect key="frame" x="0.0" y="0.0" width="140" height="140"/>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <connections>
+                                            <outlet property="photoImageView" destination="l2Q-LX-iZt" id="i5f-wG-PRQ"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="F0J-aU-768" id="XdE-sU-Bh8"/>
+                                    <outlet property="delegate" destination="F0J-aU-768" id="djE-dC-22l"/>
+                                </connections>
+                            </collectionView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Upy-Yj-Cb7">
+                                <rect key="frame" x="0.0" y="0.0" width="406" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="YCE-XO-iqs"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem style="plain" id="psG-dg-8pP">
+                                        <view key="customView" contentMode="scaleToFill" id="iNg-2Z-Xyd">
+                                            <rect key="frame" x="16" y="6" width="288" height="33"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LIs-Fc-LCX">
+                                                    <rect key="frame" x="149" y="6" width="119" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="外部ディスプレイ:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BEe-PA-2WG">
+                                                    <rect key="frame" x="0.0" y="6" width="141" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="JGs-yH-Lch" firstAttribute="top" secondItem="Upy-Yj-Cb7" secondAttribute="bottom" id="43B-E0-pjL"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Upy-Yj-Cb7" secondAttribute="trailing" constant="-16" id="RGy-JV-rVk"/>
+                            <constraint firstItem="Upy-Yj-Cb7" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="Xl8-9U-V9x"/>
+                            <constraint firstItem="JGs-yH-Lch" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-16" id="iDT-p0-v0k"/>
+                            <constraint firstItem="Upy-Yj-Cb7" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-16" id="okB-dC-tqG"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="JGs-yH-Lch" secondAttribute="trailing" constant="-16" id="rFx-rH-5c8"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="JGs-yH-Lch" secondAttribute="bottom" id="rsa-o1-n9Y"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="labelDisplayStatus" destination="LIs-Fc-LCX" id="0fX-F3-2A7"/>
+                        <outlet property="photoCollectionViewController" destination="F0J-aU-768" id="cIY-fU-3vk"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <customObject id="F0J-aU-768" customClass="PhotoCollectionViewController" customModule="PhotoDisplay" customModuleProvider="target">
+                    <connections>
+                        <outlet property="view" destination="JGs-yH-Lch" id="3h8-bC-iNI"/>
+                    </connections>
+                </customObject>
+            </objects>
+            <point key="canvasLocation" x="331" y="337"/>
+        </scene>
+    </scenes>
+</document>
