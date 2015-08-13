@@ -96,7 +96,8 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <customObject id="F0J-aU-768" customClass="PhotoCollectionViewController" customModule="PhotoDisplay" customModuleProvider="target">
                     <connections>
-                        <outlet property="view" destination="JGs-yH-Lch" id="3h8-bC-iNI"/>
+                        <outlet property="_collectionView" destination="JGs-yH-Lch" id="Wso-c5-M2I"/>
+                        <outlet property="view" destination="JGs-yH-Lch" id="F3R-Jz-3Qd"/>
                     </connections>
                 </customObject>
             </objects>

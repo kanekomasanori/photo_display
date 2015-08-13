@@ -16,6 +16,7 @@ protocol PhotoCollectionViewDelegate{
 }
 
 class PhotoCollectionViewController: UICollectionViewController {
+    @IBOutlet var _collectionView: UICollectionView!
     var photoAssets = [PHAsset]()
     var delegate: PhotoCollectionViewDelegate! = nil
     
@@ -25,7 +26,7 @@ class PhotoCollectionViewController: UICollectionViewController {
         assets.enumerateObjectsUsingBlock { (asset, index, stop) -> Void in
             self.photoAssets.append(asset as! PHAsset)
         }
-        collectionView?.reloadData()
+        _collectionView.reloadData()
     }
 
     override func viewDidLoad() {
@@ -36,7 +37,6 @@ class PhotoCollectionViewController: UICollectionViewController {
 
         // Register cell classes
         self.collectionView!.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-
         // Do any additional setup after loading the view.
     }
 
@@ -70,13 +70,12 @@ class PhotoCollectionViewController: UICollectionViewController {
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> PhotoCollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! PhotoCollectionViewCell
-    
-        let printManager:PHImageManager = PHImageManager()
-        printManager.requestImageForAsset(photoAssets[indexPath.row], targetSize: CGSize(width: 100, height: 100), contentMode: .AspectFill, options: nil) {
-            image, info in
-            
-            cell.photoImageView?.image = image
-        }
+        let printManager: PHImageManager = PHImageManager()
+        
+        PHImageManager.defaultManager().requestImageDataForAsset(photoAssets[indexPath.row], options: nil, resultHandler: {(imageData: NSData!, dataUTI: String!, orientation: UIImageOrientation, info: [NSObject : AnyObject]!) in
+            cell.photoImageData = imageData
+        })
+
         // Configure the cell
     
         return cell
@@ -93,26 +92,10 @@ class PhotoCollectionViewController: UICollectionViewController {
     // Uncomment this method to specify if the specified item should be selected
     override func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
         collectionView.selectItemAtIndexPath(indexPath, animated: true, scrollPosition: .CenteredVertically)
-        var collectionViewCell:PhotoCollectionViewCell? = collectionView.cellForItemAtIndexPath(indexPath) as? PhotoCollectionViewCell
-        var selectedPhotoImageView:UIImageView? = collectionViewCell?.photoImageView
-        var selectedPhotoImage:UIImage? = selectedPhotoImageView?.image
-        delegate.seelctedImage(selectedPhotoImage!)
+        var collectionViewCell:PhotoCollectionViewCell = (collectionView.cellForItemAtIndexPath(indexPath) as? PhotoCollectionViewCell)!
+        var selectedPhotoImageView:UIImageView = collectionViewCell.photoImageView
+        var selectedPhotoImage:UIImage = selectedPhotoImageView.image!
+        delegate.seelctedImage(selectedPhotoImage)
         return true
     }
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(collectionView: UICollectionView, shouldShowMenuForItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(collectionView: UICollectionView, canPerformAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) -> Bool {
-        return false
-    }
-
-    override func collectionView(collectionView: UICollectionView, performAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) {
-    
-    }
-    */
-
 }

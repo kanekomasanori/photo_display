@@ -9,5 +9,10 @@
 import UIKit
 
 class PhotoCollectionViewCell: UICollectionViewCell {
-    @IBOutlet var photoImageView:UIImageView?
+    @IBOutlet var photoImageView:UIImageView!
+    var photoImageData: NSData! {
+        didSet {
+            photoImageView.image = UIImage(data: self.photoImageData)
+        }
+    }
 }
